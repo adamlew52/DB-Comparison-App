@@ -1,0 +1,26 @@
+compareData()
+- modify it so that it is modular via a for loop/while loop. needs to iterate for the number of rows that there are in the db
+- needs to use user input in order to know which values to compareData
+- modify code so it can call upon elements in a 3D array
+
+db1/2import()
+- modify code so it parses in to a 3D array
+
+[create] searchData()
+- using keyword(s), can search through search throug the DB and compare the data
+- using numbers, it will call upon all elements that have that number in it
+
+[create] differenceFinder()
+- user will have the option to add the difference between two different pieces of data to a new table that tracks differences under whatever name they want
+- subtracts the first value by the second value (this will stand true especially when we add in the ability to search times/days/weeks/months/years)
+
+[create] differenceCalculator()
+- finds the average difference from one day to another/one piece of data to another
+- finds the average difference over the span of a week/a month/a year/and so one
+- maybe could add the ability to go a (time span) backwards/forwards from a certain data
+
+[create] trendFinder()
+- finds the largest differences by running differenceCalculator() for different amounts of time
+- creates a list of the largest differences, then finds all data in the dbs/tables +/- 1 of the next smallest time frames(besides days)
+    example: if the year of 2019 had the largest change, it will find all data for during 2019, plus adding 1/2 months before that so one can improve their research
+- the key is to use this method recursively in order to find the most important patterns
