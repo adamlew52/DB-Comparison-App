@@ -8,7 +8,7 @@ def db1Import(db1Name):
 
     c1.execute("SELECT rowid, * FROM 'Test Table'")
     items =  c1.fetchall()
-    items1Array = []
+    items1Array = [[],[]]
 
     for item in items:
         items1Array.append(item)
@@ -25,29 +25,42 @@ def db2Import(db2Name):
 
     c2.execute("SELECT rowid, * FROM 'Test Table'")
     items =  c2.fetchall()
-    items2Array = []
+    items2Array = [[],[]]
 
+    positionCounter = 0
     for item in items:
-        items2Array.append(item)
+        items2Array.append([item][positionCounter])
+        print("items2array.append(item)")
+        positionCounter += 0
 
     conn2.commit()
     conn2.close()
     return items2Array
 
 def parseData(dataArray):
-    testArray = [] #info is parsed into THIS array from the imported data from the DB
+    testArray = [[],[]] #info is parsed into THIS array from the imported data from the DB
     yRef = 0
-    while yRef < (len(dataArray)):
-        position = dataArray[yRef][0]
-        valueOne = dataArray[yRef][1]
-        valueTwo = dataArray[yRef][2]
 
-        testArray.append(position)
-        testArray.append(valueOne)
-        testArray.append(valueTwo)
+    print("experimental array")
+    for r in dataArray:
+        for c in r:
+            print(c,end = " ")
+            print("PARSING COLUMN")
+            #testArray.append()
+        print("PARSING ROW")
+        
+        while yRef < (len(dataArray)):
+            #position = dataArray([yRef],[0])
+            #valueOne = dataArray([yRef],[1])
+            #valueTwo = dataArray([yRef],[2])
 
-        print("FLAG - testArray:",testArray)
-        yRef += 1  
+            testArray.append([yRef],[0])
+            print()
+
+            #testArray.append(c)
+
+            print("FLAG - testArray:",testArray)
+            yRef += 1  
 
     return testArray
     
