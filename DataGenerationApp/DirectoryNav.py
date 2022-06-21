@@ -7,6 +7,15 @@ from pathlib import Path
 #ATTENTION: os libraries may be faulty on windows machines. If you are using Mac or Linux please check the ReadMe, section 2 for recommendations
 
 
+#TODO
+# - finish selectCSV...we're so close. The for loops needs tweaked, the problem with python for loops is that they iterate through strings in an unfamiliar way. 
+#   shouldnt be toooooo hard to fix tho, its just 3:08am and i have class and work in the morning
+# - return the selected numbers from selectCSV back to main. Call GenerationAndFormatting.py to populate the selected files
+#       - IMPORTANT: be sure to utilize the function that checks to see if the DB has tables and is formatted to recieve the data
+# - add a function that checks to make sure that the DB was completely populated
+# 
+
+
 #error handling
 class Error(Exception):
     """Not Really Sure What Happened. Read the Log"""
@@ -45,12 +54,38 @@ def findCSV(directoryAddress):
         splitFileName = os.path.splitext(baseName)
         formattedFileName = (splitFileName[0])
         csvFiles.append(formattedFileName)
+
+    print(csvFiles)
     return csvFiles
 
 def SelectCSV(csvFileArray):
-    for files in csvFileArray:
-        print("FILES: ",files)
     selectedFiles = input("\nPlease enter the number(s) corresponding to the .csv file you would like populate\nFor multiple files, please be sure to use the format of (#,#,..,#): ")
+    csvFileArrayLength = len(csvFileArray)
+    selectedFiles = selectedFiles.split(",")
+
+    try:
+        print("try start")
+        print("")
+        for selectedElement in selectedFiles:
+            print("type(selectedElement): ",type(selectedElement),"in iteration",selectedElement)
+            print("type(selectedFiles): ",type(selectedFiles),"in iteration",selectedElement)
+            
+            res = [ele for ele in selectedFiles if(ele in selectedFiles)]
+
+            if res:
+                print("this is matching")
+                selectedElement = int(selectedElement)
+                print("selectedElement: ",selectedElement)
+                print("csvFileArray[selectedElement]: ",csvFileArray[selectedElement])
+            else:
+                print("not selected: ",csvFileArray[selectedElement])
+            print("")
+        
+        print("end try")
+    except:
+        print("except placeholder")
+    
+    print("code continued...")
 
 def Menu():
     directoryAddress = GetProjectDirectory()
