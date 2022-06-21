@@ -1,0 +1,28 @@
+TODO 
+build DatabaseControl.py so it adds the data to each respective DB as data generates
+
+user adds directory
+    - ability to navigate subdirectories
+    - ability to find a previously existing db
+    - ability to add a db
+
+build another program that begins the comparison software. start with the following
+    - brainstorm methods of comparing the data
+    - start with DB1-item[0,0] is compared to every single item in DB2. DB1-item[0,1] is then compared to all items
+    - 
+    
+---------------------------------------------------------------------------------------------------------------------------------
+
+DONE 
+use the generation application to generate data to populate the database
+
+---------------------------------------------------------------------------------------------------------------------------------
+PLANS
+UI Plans:
+Directory Navigation:
+    shows the current directory in a box at the top
+    shows a preview of the contents of the directory when hovering over a selection
+    user can click option for the menu
+    menu has flowing animation
+
+---------------------------------------------------------------------------------------------------------------------------------
