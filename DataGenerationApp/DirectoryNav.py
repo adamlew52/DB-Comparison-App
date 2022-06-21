@@ -47,6 +47,11 @@ def findCSV(directoryAddress):
         csvFiles.append(formattedFileName)
     return csvFiles
 
+def SelectCSV(csvFileArray):
+    for files in csvFileArray:
+        print("FILES: ",files)
+    selectedFiles = input("\nPlease enter the number(s) corresponding to the .csv file you would like populate\nFor multiple files, please be sure to use the format of (#,#,..,#): ")
+
 def Menu():
     directoryAddress = GetProjectDirectory()
     menuSelect = 0
@@ -59,7 +64,7 @@ def Menu():
     print("")
     if(menuSelect == "1"):
         print("option 1 selected")
-        findCSV(directoryAddress)
+        SelectCSV(findCSV(directoryAddress))
 
     else: 
         print("nothing input")
