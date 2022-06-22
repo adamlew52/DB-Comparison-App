@@ -43,10 +43,12 @@ def Generation(dataRangeLow, dataRangeHigh):
     return randVal
 
 def PopulateDB(dbName, tableName, size):
+    DatabaseControl.DBCreate(dbName)
+    
     for count in range(1, size):
         dbData1 = low()
         dbData2 = middle()
         DatabaseControl.dbAppendData(dbName, dbData1, dbData2)
         count += 1
-        print("count: ", count)
+        print("count: ", count)        
     print("Done with PopulateDB()")

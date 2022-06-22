@@ -3,6 +3,9 @@ from logging import exception
 import ntpath
 import os
 from pathlib import Path
+import GenerationAndFormatting
+import DatabaseControl
+import CustomTableCreation
 
 #ATTENTION: os libraries may be faulty on windows machines. If you are using Mac or Linux please check the ReadMe, section 2 for recommendations
 
@@ -15,6 +18,9 @@ from pathlib import Path
 # - add a function that checks to make sure that the DB was completely populated
 # 
 
+
+#BUG
+# line37 THERE IS NEVER A CASE FOR DIRINPUT TO BE CHANGED IN THIS CASE. FIX THIS ERROR
 
 #error handling
 class Error(Exception):
@@ -29,7 +35,7 @@ class InvalidDirectory(Error):
 #functions used in operation
 def GetProjectDirectory():
     dirInput = input("Please enter pathing to the root directory of your project. Type 'CWD' if you are using the Current Working Directory: ")
-    while (dirInput != ["X","x"]):
+    while (dirInput != ["X","x"]): #THERE IS NEVER A CASE FOR DIRINPUT TO BE CHANGED IN THIS CASE. FIX THIS ERROR #BUG
         try:
             if dirInput in ["cwd","Cwd","CWd","CWD","cWd","cWD","cwD"]:
                 directoryAddress = os.getcwd()
@@ -58,25 +64,33 @@ def findCSV(directoryAddress):
     print(csvFiles)
     return csvFiles
 
+def DBPopulation(dbName, tableName, size):
+    GenerationAndFormatting.PopulateDB(dbName, tableName, size)
+
 def SelectCSV(csvFileArray):
     selectedFiles = input("\nPlease enter the number(s) corresponding to the .csv file you would like populate\nFor multiple files, please be sure to use the format of (#,#,..,#): ")
-    csvFileArrayLength = len(csvFileArray)
     selectedFiles = selectedFiles.split(",")
 
     try:
         print("try start")
         print("")
+
+        tableName = "TT "
         for selectedElement in selectedFiles:
-            print("type(selectedElement): ",type(selectedElement),"in iteration",selectedElement)
-            print("type(selectedFiles): ",type(selectedFiles),"in iteration",selectedElement)
+            print("iteration: ",selectedElement)
             
-            res = [ele for ele in selectedFiles if(ele in selectedFiles)]
+            res = [ele for ele in selectedFiles if(ele in selectedFiles)] #res = bool; tests if the input number has a corresponding element
 
             if res:
-                print("this is matching")
                 selectedElement = int(selectedElement)
-                print("selectedElement: ",selectedElement)
-                print("csvFileArray[selectedElement]: ",csvFileArray[selectedElement])
+                print("this is matching the element ",csvFileArray[selectedElement])
+                
+                size = 1000
+                dbName = csvFileArray[selectedElement]
+                tableName = (tableName+selectedElement) # if number 1 and 3 are chosen then "TT TESTCSV" and "TT TESTME3" will be created respectively
+
+                CustomTableCreation.CreateTable(dbName, tableName)
+                GenerationAndFormatting.PopulateDB(csvFileArray[selectedElement], tableName, size)
             else:
                 print("not selected: ",csvFileArray[selectedElement])
             print("")
@@ -105,5 +119,4 @@ def Menu():
         print("nothing input")
         Menu()
         
-
 Menu()

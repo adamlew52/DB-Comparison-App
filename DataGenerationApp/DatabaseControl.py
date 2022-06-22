@@ -1,10 +1,11 @@
 import sqlite3
+import CustomTableCreation
 
 
 def CheckDBExist(dbName, newTableName):
     dbDataImport1 = (dbName + ".db")
     try:
-        conn = sqlite3.connect(dbfDataImport1)
+        conn = sqlite3.connect(dbDataImport1)
         print("Successfully connected to the DB")
         c = conn.cursor()
     
@@ -109,10 +110,11 @@ def GetRowCount(dbName):
     return rowCountResult
 
 
-
 #testing
-dbName = "db1"
+dbName = "TESTCSV"
 tableName = "testtable"
 
 #ClearDB("db1", 100)
-CheckDBExist(dbName, tableName)
+#CheckDBExist(dbName, tableName)
+
+CustomTableCreation.CreateTable(dbName, "UNIQUE_TABLE_NAME")
