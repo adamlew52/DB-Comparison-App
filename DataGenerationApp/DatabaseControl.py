@@ -48,7 +48,11 @@ def dbAppendData(dbName, dbData1, dbData2):
     dbDataImport1 = (dbName + ".db")
     conn = sqlite3.connect(dbDataImport1)
     c = conn.cursor() 
-    c.execute("INSERT INTO testtable VALUES (?,?)", (dbData1,dbData2))
+    tableName = "INSERT INTO " + dbName + "VALUES (?,?)"
+    c.execute(tableName, (dbData1,dbData2)) #build a checker to see if the table exists. if not, create it. 
+    # may be worth it to just create a new table temporarily in the current directory, then check the names of THAT directory against the items in the target directory
+    # if they are the same, ask the user if they want to replace the DB of the same name in the 
+
     conn.commit()
     conn.close()
 

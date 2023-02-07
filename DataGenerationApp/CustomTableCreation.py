@@ -19,8 +19,7 @@ def CreateTable(dbName, tableName):
     
     #be sure to add the table name in here. if we need to move "initialString" out then make it a paramter of CreateTableInt then do it
     
-    c.execute(CreateCustomTable(userInput))
-    #c.execute("CREATE TABLE IF NOT EXISTS UNIQUE_NAME") #use if the c.execute(CUSTOM CREATION STRING) doesn't work
+    c.execute(CreateCustomTable(userInput)) #check in DirectoryNav.py for the part finding only .csv files. we may want to convert it to .db files
 
     conn.commit()
     conn.close()
