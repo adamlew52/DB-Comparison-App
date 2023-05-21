@@ -1,5 +1,5 @@
 import sqlite3
-import CustomTableCreation
+import TableCreation.CustomTableCreation as ctc
 
 
 def CheckDBExist(dbName, newTableName):
@@ -48,7 +48,11 @@ def dbAppendData(dbName, dbData1, dbData2):
     dbDataImport1 = (dbName + ".db")
     conn = sqlite3.connect(dbDataImport1)
     c = conn.cursor() 
-    c.execute("INSERT INTO testtable VALUES (?,?)", (dbData1,dbData2))
+    tableName = "INSERT INTO " + dbName + "VALUES (?,?)"
+    c.execute(str(tableName), (dbData1,dbData2)) #build a checker to see if the table exists. if not, create it. 
+    # may be worth it to just create a new table temporarily in the current directory, then check the names of THAT directory against the items in the target directory
+    # if they are the same, ask the user if they want to replace the DB of the same name in the 
+
     conn.commit()
     conn.close()
 
@@ -117,4 +121,4 @@ tableName = "testtable"
 #ClearDB("db1", 100)
 #CheckDBExist(dbName, tableName)
 
-CustomTableCreation.CreateTable(dbName, "UNIQUE_TABLE_NAME")
+ctc.CreateTable(dbName, "UNIQUE_TABLE_NAME")

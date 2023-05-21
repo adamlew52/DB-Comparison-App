@@ -1,4 +1,6 @@
 import sqlite3
+import WriteTheTableName as wtn
+from pathlib import Path
 #import DatabaseControl
 #import GenerationAndFormatting
 #import DirectoryNav
@@ -8,33 +10,38 @@ import sqlite3
 
 #may want to turn this into a class, so different iterations of the class can be called 
 
+def FileLocator():
+    path = Path.cwd()
+    print(f'current file location is {path}')
+    return path
+
+
 def CreateTable(dbName, tableName):
     dbDataImport1 = (dbName + ".db")
     conn = sqlite3.connect(dbDataImport1)
     c = conn.cursor()
 
-    print("[g] for generic table\n[i] for integer table\n[s] for string table (must have .txt file to upload. minimum of 100 words))\n[x] to quit")
+    print("[g] for generic tablename\n[i] for integer tablename\n[s] for string table (must have .txt file to upload. minimum of 100 words))\n[x] to quit")
     userInput = input("Input: ")
     userInput = userInput.lower()
     
     #be sure to add the table name in here. if we need to move "initialString" out then make it a paramter of CreateTableInt then do it
     
-    c.execute(CreateCustomTable(userInput))
-    #c.execute("CREATE TABLE IF NOT EXISTS UNIQUE_NAME") #use if the c.execute(CUSTOM CREATION STRING) doesn't work
+    c.execute(CreateCustomTable(userInput)) #check in DirectoryNav.py for the part finding only .csv files. we may want to convert it to .db files
 
     conn.commit()
     conn.close()
 
 
 def CreateCustomTable(userInput):
-    initialString = """CREATE TABLE IF NOT EXISTS projects ( 
+    initialString = """CREATE TABLE IF NOT EXISTS placeholdername ( 
         id integer PRIMARY KEY,\n"""
 
     if userInput == "g":
         columnName = input("Enter Column Name: ")
-        genericString = (columnName+"")
-        creationString = (initialString+ genericString)
-        print("FLAG - PLEASE CHECK FORMATTING ON FOLLOWING STRING:\n\t\t"+creationString)
+        genericString = (columnName + "")
+        creationString = (initialString + genericString)
+        print("FLAG - PLEASE CHECK FORMATTING ON FOLLOWING STRING:\n\t\t" + creationString)
 
     elif userInput == "i":
         columnName = input("Enter Column Name: ")
@@ -56,3 +63,5 @@ def CreateCustomTable(userInput):
     
     return creationString
 
+#CreateTable("db1", "newTable")
+FileLocator()

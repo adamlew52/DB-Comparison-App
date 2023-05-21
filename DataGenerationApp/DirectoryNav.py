@@ -9,15 +9,13 @@ import CustomTableCreation
 
 #ATTENTION: os libraries may be faulty on windows machines. If you are using Mac or Linux please check the ReadMe, section 2 for recommendations
 
+#Purpose:
+#to allow the user to access the directory of the project(s) they will be working on. 
+# Secondary Feature: connects the directory to the program that populates the databases
+
 
 #TODO
-# - finish selectCSV...we're so close. The for loops needs tweaked, the problem with python for loops is that they iterate through strings in an unfamiliar way. 
-#   shouldnt be toooooo hard to fix tho, its just 3:08am and i have class and work in the morning
-# - return the selected numbers from selectCSV back to main. Call GenerationAndFormatting.py to populate the selected files
-#       - IMPORTANT: be sure to utilize the function that checks to see if the DB has tables and is formatted to recieve the data
-# - add a function that checks to make sure that the DB was completely populated
-# 
-
+# - finish selectCSV
 
 #BUG
 # line37 THERE IS NEVER A CASE FOR DIRINPUT TO BE CHANGED IN THIS CASE. FIX THIS ERROR
